@@ -2,14 +2,14 @@ import { GovernanceSignatures } from './constants';
 import { LogDescription } from 'ethers/lib/utils';
 
 type GovernanceEvent = {
-  id: string;
+  name: string;
   signature: string;
   getDescription: (log: LogDescription) => string;
 };
 
 export const GovernanceEvents: GovernanceEvent[] = [
   {
-    id: 'PROPOSAL-CREATED',
+    name: 'ProposalCreated',
     signature: GovernanceSignatures.PROPOSAL_CREATED,
     getDescription(log: LogDescription) {
       const batch = [
@@ -25,35 +25,35 @@ export const GovernanceEvents: GovernanceEvent[] = [
     }
   },
   {
-    id: 'PROPOSAL-CANCELED',
+    name: 'ProposalCanceled',
     signature: GovernanceSignatures.PROPOSAL_CANCELED,
     getDescription(log: LogDescription) {
       return `Proposal ${log.args.id} canceled.`;
     }
   },
   {
-    id: 'PROPOSAL-QUEUED',
+    name: 'ProposalQueued',
     signature: GovernanceSignatures.PROPOSAL_QUEUED,
     getDescription(log: LogDescription) {
       return `Proposal ${log.args.id} queued with ETA: ${log.args.eta}.`;
     }
   },
   {
-    id: 'PROPOSAL-THRESHOLD-SET',
+    name: 'ProposalThresholdSet',
     signature: GovernanceSignatures.PROPOSAL_THRESHOLD_SET,
     getDescription(log: LogDescription) {
       return `Proposal threshold updated from ${log.args.oldProposalThreshold} to ${log.args.newProposalThreshold}.`;
     }
   },
   {
-    id: 'PROPOSAL-EXECUTED',
+    name: 'ProposalExecuted',
     signature: GovernanceSignatures.PROPOSAL_EXECUTED,
     getDescription(log: LogDescription) {
       return `Proposal ${log.args.id} executed.`;
     }
   },
   {
-    id: 'VOTE-CAST',
+    name: 'VoteCast',
     signature: GovernanceSignatures.VOTE_CAST,
     getDescription(log: LogDescription) {
       const supportKeys: { [x: string]: string } = {
@@ -77,35 +77,35 @@ export const GovernanceEvents: GovernanceEvent[] = [
     }
   },
   {
-    id: 'VOTING-DELAY-SET',
+    name: 'VotingDelaySet',
     signature: GovernanceSignatures.VOTING_DELAY_SET,
     getDescription(log: LogDescription) {
       return `Voting delay updated from ${log.args.oldVotingDelay} to ${log.args.newVotingDelay}.`;
     }
   },
   {
-    id: 'VOTING-PERIOD-SET',
+    name: 'VotingPeriodSet',
     signature: GovernanceSignatures.VOTING_PERIOD_SET,
     getDescription(log: LogDescription) {
       return `Voting period updated from ${log.args.oldVotingPeriod} to ${log.args.newVotingPeriod}.`;
     }
   },
   {
-    id: 'NEW-IMPLEMENTATION',
+    name: 'NewImplementation',
     signature: GovernanceSignatures.NEW_IMPLEMENTATION,
     getDescription(log: LogDescription) {
       return `Implementation changed from ${log.args.oldImplementation} to ${log.args.newImplementation}.`;
     }
   },
   {
-    id: 'NEW-PENDING-ADMIN',
+    name: 'NewPendingAdmin',
     signature: GovernanceSignatures.NEW_PENDING_ADMIN,
     getDescription(log: LogDescription) {
       return `Pending admin changed from ${log.args.oldPendingAdmin} to ${log.args.newPendingAdmin}.`;
     }
   },
   {
-    id: 'NEW-ADMIN',
+    name: 'NewAdmin',
     signature: GovernanceSignatures.NEW_ADMIN,
     getDescription(log: LogDescription) {
       return `Admin updated from ${log.args.oldAdmin} to ${log.args.newAdmin}.`;

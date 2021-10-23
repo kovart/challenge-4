@@ -5,10 +5,11 @@ import uniqBy from 'lodash/uniqBy';
 
 import { CompoundNetworkConfigs, CompoundNetworkInterfaces } from './constants';
 
-export class CompoundHelper {
+export class CompoundUtils {
+  private static readonly instanceMap: Map<Network, CompoundUtils> = new Map();
   private readonly compoundInterface: utils.Interface;
 
-  public readonly GOVERNANCE_ADDRESS: string; // current network address
+  public readonly GOVERNANCE_ADDRESS: string;
 
   constructor(network: Network) {
     const networkConfig = CompoundNetworkConfigs[network] as any;
@@ -37,7 +38,7 @@ export class CompoundHelper {
   public parseMetadata(log: LogDescription) {
     const metadata: { [x: string]: string } = {};
 
-    // filter named properties
+    // get named properties
     let index = 0;
     const shift = log.args.length; // named properties are not countable
     for (const key in log.args) {
@@ -46,5 +47,13 @@ export class CompoundHelper {
     }
 
     return metadata;
+  }
+
+  static getInstance(network: Network): CompoundUtils {
+    if (!this.instanceMap.has(network)) {
+      this.instanceMap.set(network, new CompoundUtils(network));
+    }
+
+    return this.instanceMap.get(network)!;
   }
 }

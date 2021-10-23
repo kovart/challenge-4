@@ -1,29 +1,23 @@
 import {
   Finding,
-  FindingSeverity,
   FindingType,
-  HandleTransaction,
-  Network,
-  TransactionEvent
+  FindingSeverity,
+  TransactionEvent,
+  HandleTransaction
 } from 'forta-agent';
-import { CompoundHelper } from './utils';
+import { CompoundUtils } from './utils';
 import { GovernanceEvents } from './events';
 
 export const FAILED_EVENT_ALERT_ID = 'COMP-GOVERNMENT-0';
 export const SUCCESS_EVENT_ALERT_ID = 'COMP-GOVERNMENT-1';
-export const COMPOUND_NETWORK = Network.MAINNET;
-
-const compound = new CompoundHelper(COMPOUND_NETWORK);
 
 const handleTransaction: HandleTransaction = async (txEvent: TransactionEvent) => {
   const findings: Finding[] = [];
 
+  const compound = CompoundUtils.getInstance(txEvent.network);
+
   for (const governanceEvent of GovernanceEvents) {
     const logs = txEvent.filterEvent(governanceEvent.signature, compound.GOVERNANCE_ADDRESS);
-
-    if(logs.length > 0) {
-      require('fs').writeFileSync('event.json', JSON.stringify(txEvent), { encoding: 'utf8' });
-    }
 
     for (const log of logs) {
       const parsedLog = compound.parseLog(log);
@@ -62,5 +56,7 @@ const handleTransaction: HandleTransaction = async (txEvent: TransactionEvent) =
 };
 
 export default {
-  handleTransaction
+  handleTransaction,
+  SUCCESS_EVENT_ALERT_ID,
+  FAILED_EVENT_ALERT_ID
 };
