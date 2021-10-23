@@ -1,4 +1,4 @@
-import { Log } from 'forta-agent';
+import { Log, Network } from 'forta-agent';
 import { utils } from 'ethers';
 import { LogDescription } from 'ethers/lib/utils';
 import uniqBy from 'lodash/uniqBy';
@@ -10,18 +10,18 @@ export class CompoundHelper {
 
   public readonly GOVERNANCE_ADDRESS: string; // current network address
 
-  constructor(networkName: string) {
-    const networkConfig = CompoundNetworkConfigs[networkName] as any;
-    const abiConfig = CompoundNetworkInterfaces[networkName] as any;
+  constructor(network: Network) {
+    const networkConfig = CompoundNetworkConfigs[network] as any;
+    const abiConfig = CompoundNetworkInterfaces[network] as any;
 
     this.GOVERNANCE_ADDRESS = networkConfig.Governor?.GovernorBravo?.address;
 
     if (!this.GOVERNANCE_ADDRESS) {
-      throw new Error(`No GovernorBravo address found in "${networkName}" network`);
+      throw new Error(`No GovernorBravo address found in "${network}" network`);
     }
 
     if (!abiConfig.GovernorBravo) {
-      throw new Error(`No GovernorBravo ABI found in "${networkName}" network`);
+      throw new Error(`No GovernorBravo ABI found in "${network}" network`);
     }
 
     // official configs contains duplicates

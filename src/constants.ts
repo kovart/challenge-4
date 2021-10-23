@@ -1,21 +1,13 @@
+import { Network } from 'forta-agent';
+
 import GoerliConfig from 'compound-config/networks/goerli.json';
 import GoerliAbiConfig from 'compound-config/networks/goerli-abi.json';
-import KovanConfig from 'compound-config/networks/kovan.json';
-import KovanAbiConfig from 'compound-config/networks/kovan-abi.json';
 import MainnetConfig from 'compound-config/networks/mainnet.json';
 import MainnetAbiConfig from 'compound-config/networks/mainnet-abi.json';
 import RinkebyConfig from 'compound-config/networks/rinkeby.json';
 import RinkebyAbiConfig from 'compound-config/networks/rinkeby-abi.json';
 import RopstenConfig from 'compound-config/networks/ropsten.json';
 import RopstenAbiConfig from 'compound-config/networks/ropsten-abi.json';
-
-export const CompoundNetworkNames = {
-  GOERLI: 'goerli',
-  KOVAN: 'kovan',
-  MAINNET: 'mainnet',
-  RINKEBY: 'rinkeby',
-  ROPSTEN: 'ropsten'
-};
 
 export const GovernanceSignatures = {
   PROPOSAL_CREATED:
@@ -33,17 +25,15 @@ export const GovernanceSignatures = {
 };
 
 export const CompoundNetworkConfigs = {
-  [CompoundNetworkNames.GOERLI]: GoerliConfig,
-  [CompoundNetworkNames.KOVAN]: KovanConfig,
-  [CompoundNetworkNames.MAINNET]: MainnetConfig,
-  [CompoundNetworkNames.RINKEBY]: RinkebyConfig,
-  [CompoundNetworkNames.ROPSTEN]: RopstenConfig
+  [Network.GOERLI]: GoerliConfig,
+  [Network.MAINNET]: MainnetConfig,
+  [Network.RINKEBY]: RinkebyConfig,
+  [Network.ROPSTEN]: RopstenConfig
 };
 
 export const CompoundNetworkInterfaces = {
-  [CompoundNetworkNames.GOERLI]: GoerliAbiConfig,
-  [CompoundNetworkNames.KOVAN]: KovanAbiConfig,
-  [CompoundNetworkNames.MAINNET]: MainnetAbiConfig,
-  [CompoundNetworkNames.RINKEBY]: RinkebyAbiConfig,
-  [CompoundNetworkNames.ROPSTEN]: RopstenAbiConfig,
-}
+  [Network.GOERLI]: GoerliAbiConfig,
+  [Network.MAINNET]: MainnetAbiConfig,
+  [Network.RINKEBY]: RinkebyAbiConfig,
+  [Network.ROPSTEN]: RopstenAbiConfig
+};
