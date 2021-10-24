@@ -30,7 +30,7 @@ from the [compound-finance/compound-config](https://github.com/compound-finance/
 official repository and used depending on the `network` property provided in the transaction event.
 
 
-Currently, Governor Bravo is supported **only on Mainnet network**. 
+At the moment, Governor Bravo is only supported **on the Mainnet network**. 
 
 ## Supported Chains
 
