@@ -9,7 +9,7 @@ import RinkebyAbiConfig from 'compound-config/networks/rinkeby-abi.json';
 import RopstenConfig from 'compound-config/networks/ropsten.json';
 import RopstenAbiConfig from 'compound-config/networks/ropsten-abi.json';
 
-export const GovernanceSignatures = {
+export const GovernanceSignature = {
   PROPOSAL_CREATED:
     'ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)',
   VOTE_CAST: 'VoteCast(address,uint256,uint8,uint256,string)',
@@ -24,14 +24,14 @@ export const GovernanceSignatures = {
   NEW_ADMIN: 'NewAdmin(address,address)'
 };
 
-export const CompoundNetworkConfigs = {
+export const CompoundNetworkConfig = {
   [Network.GOERLI]: GoerliConfig,
   [Network.MAINNET]: MainnetConfig,
   [Network.RINKEBY]: RinkebyConfig,
   [Network.ROPSTEN]: RopstenConfig
 };
 
-export const CompoundNetworkInterfaces = {
+export const CompoundNetworkABI = {
   [Network.GOERLI]: GoerliAbiConfig,
   [Network.MAINNET]: MainnetAbiConfig,
   [Network.RINKEBY]: RinkebyAbiConfig,

@@ -23,11 +23,14 @@ You can read more [about Governance Protocol.](https://compound.finance/docs/gov
 
 Check out Compound Governance proposals [on the website.](https://comp.vote/)
 
-## Compound Network
+## Compound Configs
 
-To make the agent more testable, all network addresses are parsed
+To make the agent more testable, all Compound configs are parsed
 from the [compound-finance/compound-config](https://github.com/compound-finance/compound-config)
-official repository and used depending on the network specified in the `COMPOUND_NETWORK` constant.
+official repository and used depending on the `network` property provided in the transaction events.
+
+
+Currently, Governor Bravo V2 is supported only on Mainnet network. 
 
 ## Supported Chains
 

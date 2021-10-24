@@ -3,7 +3,7 @@ import { utils } from 'ethers';
 import { LogDescription } from 'ethers/lib/utils';
 import uniqBy from 'lodash/uniqBy';
 
-import { CompoundNetworkConfigs, CompoundNetworkInterfaces } from './constants';
+import { CompoundNetworkABI, CompoundNetworkConfig } from './constants';
 
 export class CompoundUtils {
   private static readonly instanceMap: Map<Network, CompoundUtils> = new Map();
@@ -12,17 +12,17 @@ export class CompoundUtils {
   public readonly GOVERNANCE_ADDRESS: string;
 
   constructor(network: Network) {
-    const networkConfig = CompoundNetworkConfigs[network] as any;
-    const abiConfig = CompoundNetworkInterfaces[network] as any;
+    const networkConfig = CompoundNetworkConfig[network] as any;
+    const abiConfig = CompoundNetworkABI[network] as any;
 
     this.GOVERNANCE_ADDRESS = networkConfig.Governor?.GovernorBravo?.address;
 
     if (!this.GOVERNANCE_ADDRESS) {
-      throw new Error(`No GovernorBravo address found in "${network}" network`);
+      throw new Error(`No GovernorBravo address found in "${Network[network]}" network`);
     }
 
     if (!abiConfig.GovernorBravo) {
-      throw new Error(`No GovernorBravo ABI found in "${network}" network`);
+      throw new Error(`No GovernorBravo ABI found in "${Network[network]}" network`);
     }
 
     // official configs contains duplicates
@@ -47,6 +47,10 @@ export class CompoundUtils {
     }
 
     return metadata;
+  }
+
+  public encodeLog(signature: string, data: ReadonlyArray<any>) {
+    return this.compoundInterface.encodeEventLog(signature as any, data);
   }
 
   static getInstance(network: Network): CompoundUtils {

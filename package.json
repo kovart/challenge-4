@@ -20,8 +20,8 @@
   "dependencies": {
     "ethers": "^5.5.1",
     "forta-agent": "^0.0.22",
-    "lodash": "^4.17.21",
-    "web3": "^1.6.0"
+    "keccak256": "^1.0.3",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
