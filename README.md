@@ -27,10 +27,10 @@ Check out Compound Governance proposals [on the website.](https://comp.vote/)
 
 To make the agent more testable, all Compound configs are parsed
 from the [compound-finance/compound-config](https://github.com/compound-finance/compound-config)
-official repository and used depending on the `network` property provided in the transaction events.
+official repository and used depending on the `network` property provided in the transaction event.
 
 
-Currently, Governor Bravo V2 is supported only on Mainnet network. 
+Currently, Governor Bravo is supported **only on Mainnet network**. 
 
 ## Supported Chains
 
@@ -39,13 +39,13 @@ Currently, Governor Bravo V2 is supported only on Mainnet network.
 ## Alerts
 
 - COMP-GOVERNMENT-0
-  - Fired when **failed** governance transactions is detected
+  - Fired when **failed** governance transaction is detected
   - Severity is always set to "high"
   - Type is always set to "suspicious"
   - `Metadata` contains all the detected event arguments
   
 - COMP-GOVERNMENT-1
-  - Fired when **successful** governance transactions is detected
+  - Fired when **successful** governance transaction is detected
   - Severity is always set to "info"
   - Type is always set to "unknown"
   - `Metadata` contains all the detected event arguments
